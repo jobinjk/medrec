@@ -50,11 +50,12 @@ def configure_extensions(app, cli):
     @app.after_request
     def after_request(response):
         response.headers.add('Access-Control-Allow-Origin',
-                             'http://0.0.0.0:8080')
+                             'http://0.0.0.0:8080/')
         response.headers.add('Access-Control-Allow-Headers',
                              'Content-Type,Authorization')
         response.headers.add('Access-Control-Allow-Methods',
                              'GET,OPTIONS,DELETE,PATCH,POST,DELETE')
+        print(response)
         return response
 
     # if app.config['ENABLE_SHARDING']:

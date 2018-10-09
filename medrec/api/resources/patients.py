@@ -55,7 +55,7 @@ class Patient(JWTResource):
 
         return schema.jsonify(patient)
 
-    def patch(self, pid):
+    def put(self, pid):
 
         schema = PatientsSchema(partial=True)
         data = request.json

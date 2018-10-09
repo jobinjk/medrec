@@ -15,5 +15,5 @@ api = Api(blueprint)
 api.add_resource(User, '/users/<uid>')
 api.add_resource(Users, '/users')
 
-api.add_resource(Patient, '/patient/<pid>')
+api.add_resource(Patient, '/patients/<pid>')
 api.add_resource(Patients, '/patients')
