@@ -57,22 +57,22 @@ def configure_extensions(app, cli):
                              'GET,OPTIONS,DELETE,PATCH,POST,DELETE')
         return response
 
-    if app.config['ENABLE_SHARDING']:
+    # if app.config['ENABLE_SHARDING']:
 
-        # Enable sharding
-        client = MongoClient(app.config['HOST'])
-        try:
-            client.admin.command('enableSharding', app.config['DB'])
-        except OperationFailure:
-            pass
+    #     # Enable sharding
+    #     client = MongoClient(app.config['HOST'])
+    #     try:
+    #         client.admin.command('enableSharding', app.config['DB'])
+    #     except OperationFailure:
+    #         pass
 
-        try:
-            client.admin.command(
-                'shardCollection', 'MEDREC.report_data', key={'_id': 1})
-            client.admin.command(
-                'shardCollection', 'MEDREC.reports', key={'_id': 1})
-        except OperationFailure:
-            pass
+    #     try:
+    #         client.admin.command(
+    #             'shardCollection', 'MEDREC.report_data', key={'_id': 1})
+    #         client.admin.command(
+    #             'shardCollection', 'MEDREC.reports', key={'_id': 1})
+    #     except OperationFailure:
+    #         pass
 
 
 def register_blueprints(app):
