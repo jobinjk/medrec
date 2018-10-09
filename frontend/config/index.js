@@ -18,7 +18,7 @@ module.exports = {
     autoOpenBrowser: false,
     errorOverlay: true,
     notifyOnErrors: true,
-    poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
+    poll: 10, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
 
     
     /**

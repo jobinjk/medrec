@@ -8,7 +8,7 @@
                   <v-form v-model="loginForm" @submit.prevent="doLogin" ref="loginForm">
                     <v-card-text>
                       <div class="layout column align-center">
-                        <h1 class="flex my-4 primary--text">MEDREC Patients</h1>
+                        <h1 class="flex my-4 primary--text">MEDREC</h1>
                       </div> 
                       <v-layout row wrap>
                         <v-flex xs12>
@@ -62,7 +62,7 @@
         metaInfo () {
           return {
             title: 'Login',
-            titleTemplate: '%s | MEDREC Patients'
+            titleTemplate: '%s | MEDREC '
           }
         },
         methods: {
