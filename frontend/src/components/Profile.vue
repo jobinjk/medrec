@@ -93,12 +93,11 @@
         ],
 
         select: null,
-        user: [],
+        user: {},
         stats: {}
       }
     },
     methods: {
-
       fetchProfile () {
         var url = '/api/users/profile'
         this.$http.get(url).then(
@@ -133,9 +132,13 @@
           })
       }
     },
-    beforeMount () {
+    created(){
+      try{
+      this.user = JSON.parse(localStorage.user)
+    }
+    catch(err){
       this.fetchProfile()
-            // console.log(this.user)
+    }
     }
   }
       </script>

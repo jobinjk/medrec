@@ -25,14 +25,25 @@ export default {
 
   data () {
     return {
-      user: JSON.parse(localStorage.user)
+      user: {}
     }
   },
   methods: {
+      fetchProfile () {
+        var url = '/api/users/profile'
+        this.$http.get(url).then(
+          (response) => {
+            this.user = response.data.profile
+            localStorage.user = JSON.stringify(this.user)
+          })
+      },
     logout () {
       this.$auth.logout()
       window.location.reload()
     }
+  },
+  created(){
+    this.fetchProfile()
   }
 }
 </script>
