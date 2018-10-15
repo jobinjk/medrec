@@ -62,3 +62,69 @@ class Users(JWTResource):
         user.save()
 
         return schema.jsonify(user)
+
+# --------For Profile View---------
+
+
+class ProfileResource(JWTResource):
+
+    def get(self):
+        schema = UserSchema(partial=True)
+
+        current_user = get_current_user()
+        try:
+            if current_user:
+                profile = UserModal.objects.get(id=str(current_user.id))
+            else:
+                raise DoesNotExist
+        except DoesNotExist:
+            return make_response(
+                jsonify(message='Profile not found'), 404
+            )
+
+        profile = schema.dump(profile).data
+
+        return jsonify(
+            profile=profile
+        )
+
+    def put(self):
+
+        data = request.get_json()
+        password = data.get('password')
+        current_user = get_current_user()
+        schema = UserSchema()
+
+        try:
+            if current_user:
+                profile = UserModal.objects.get(id=current_user.id)
+            else:
+                raise DoesNotExist
+        except DoesNotExist as e:
+            return make_response(
+                jsonify(message='Profile Not Found'),
+                404
+            )
+        if password:
+            old = password.get('old', '')
+            new = password.get('new', '')
+            if old and new:
+                if old == new:
+                    return make_response(
+                        jsonify(message='Password is same'),
+                        400
+                    )
+                if len(new) < 5:
+                    return make_response(
+                        jsonify(message='Password too short'),
+                        400
+                    )
+                if not profile.change_password(old, new):
+                    return make_response(
+                        jsonify(
+                            message='Old password is invalid, unable to authenticate'),
+                        409
+                    )
+                profile.save()
+        profile.reload()
+        return schema.jsonify(profile)
