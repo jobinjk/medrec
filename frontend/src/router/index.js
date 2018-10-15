@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/components/Login'
 import Patients from '@/components/Patients'
+import Profile from '@/components/Profile'
 import Meta from 'vue-meta'
 
 Vue.use(Router)
@@ -30,5 +31,19 @@ export default new Router({
         },
       }
     },
+    {
+      path: '/profile',
+      name: 'Profile',
+      component: Profile,
+      props: true,
+      meta: {
+        permissions: {
+          roles: ['user'],
+          permissions: ['can_view'],
+          redirectTo: '/login'
+        }
+      }
+
+    }
   ]
 })
