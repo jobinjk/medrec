@@ -25,7 +25,7 @@ export default {
 
   data () {
     return {
-      user: []
+      user: JSON.parse(localStorage.user)
     }
   },
   methods: {
