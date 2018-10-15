@@ -1,6 +1,7 @@
 from .user import (
     User,
-    Users
+    Users,
+    ProfileResource
 )
 
 from .patients import(
