@@ -1,5 +1,8 @@
 from uuid import uuid4
 from datetime import timedelta
+import os
+
+base_dir = os.path.dirname(os.path.dirname(__file__))
 
 
 class Config:
@@ -53,6 +56,11 @@ class Config:
 class Developement(Config):
     DEBUG = True
     SECRET_KEY = 'this is something that we usually give no importance!'
+    BASE_DIR = base_dir
+    QR_DIR = os.path.join(BASE_DIR, 'qr_images')
+
+    if not os.path.isdir(QR_DIR):
+        os.mkdir(QR_DIR)
 
     HOST = 'localhost'
     PORT = 27017

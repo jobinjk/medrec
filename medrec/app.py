@@ -23,6 +23,14 @@ def create_app(config=None, testing=False, cli=False):
 
     return app
 
+    # @app.route('/get_image')
+    # def get_image():
+    # if request.args.get('type') == '1':
+    #     filename = 'ok.gif'
+    # else:
+    #     filename = 'error.gif'
+    # return send_file(filename, mimetype='image/png')
+
 
 def configure_app(app, testing=False):
     '''set configuration for application

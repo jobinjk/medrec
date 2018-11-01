@@ -7,11 +7,16 @@ from medrec.models import (
     Users
 )
 from medrec.helpers import (
-    paginate
+    paginate,
+    loadconf
 )
 from mongoengine.errors import (
     DoesNotExist, NotUniqueError, ValidationError
 )
+import pyqrcode
+import png
+import os
+conf = loadconf()
 
 
 class Patients(JWTResource):
@@ -36,6 +41,11 @@ class Patients(JWTResource):
 
         try:
             patient.save()
+            patient_id = str(patient.id)
+
+            patient_qr = pyqrcode.create(patient_id)
+            loc = os.path.join(conf.QR_DIR, 'patient_%s.png' % patient_id)
+            patient_qr.png(loc, scale=8)
         except NotUniqueError as e:
             return make_response(
                 jsonify(message="The name already exists"), 409
