@@ -36,7 +36,7 @@
         </v-content>
         <v-footer inset app>
           <v-layout column align-end>
-            <span>Datahut &copy; 2018</span>
+            <span>New ones &copy; 2018</span>
           </v-layout>
         </v-footer>
       </v-app>
@@ -52,7 +52,13 @@
           clipped: true,
           fixed: false,
           isLoggedIn: false,
-          items: [ {
+          items: [
+          {
+            icon: 'fa-home',
+            title: 'Home',
+            href: '/home'
+          },
+          { 
             icon: 'fa-database',
             title: 'Patients',
             href: '/patients'

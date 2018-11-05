@@ -21,7 +21,6 @@
         </v-flex>
       </v-layout>
     </div>
-
     <!-- Content -->
 
     <!-- trials -->
