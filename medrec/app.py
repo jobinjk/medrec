@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, send_from_directory
 
 from medrec import auth, api
 from medrec.extensions import db, jwt  # , conf_celery
@@ -17,19 +17,27 @@ def create_app(config=None, testing=False, cli=False):
     configure_extensions(app, cli)
     register_blueprints(app)
 
+    base_dir = os.path.dirname(os.path.dirname(__file__))
+    QR_DIR = os.path.join(base_dir, 'qr_images')
+
     @app.route('/')
     def index():
         return render_template('index.html')
 
-    return app
+    # @app.route('/get_image', methods=['GET'])
 
-    # @app.route('/get_image')
-    # def get_image():
-    # if request.args.get('type') == '1':
-    #     filename = 'ok.gif'
-    # else:
-    #     filename = 'error.gif'
-    # return send_file(filename, mimetype='image/png')
+    # def get_patient_id():
+
+    #     file = request.files['image']
+    #     f = os.path.join(app.config['base_dir'], file.filename)
+    #     file.save(f)
+    #     return send_file(filename, mimetype='image/png')
+
+    @app.route('/qr_images/<filename>', methods=['GET'])
+    def qr_images(filename):
+        return send_from_directory(QR_DIR, filename)
+
+    return app
 
 
 def configure_app(app, testing=False):
