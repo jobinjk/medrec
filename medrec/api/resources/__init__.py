@@ -8,3 +8,7 @@ from .patients import(
     Patient,
     Patients
 )
+
+from .search import(
+    Search
+)
