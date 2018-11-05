@@ -36,6 +36,13 @@
             <span class="caption"><u>Patient ID:</u><br>
               <strong class="subheading blue-grey--text">{{item.id}}</strong>
             </span>
+            <v-flex xs5>
+                  <v-img
+                    :src= 'origin+"/qr_images/patient_"+item.id+".png"'
+                    height="125px"
+                    contain
+                  ></v-img>
+            </v-flex>
             <br>
             <span class="caption">
               <label><u>Description</u></label><br>
@@ -179,8 +186,14 @@
           default: null
         }
       },
+      computed:{
+        origin:function(){
+          return process.env.BASE_ORIGIN
+        }
+      },
       data () {
         return {
+          // image: require('http://0.0.0.0:8000/qr_images/patient_'+'{{item.id}}'+'.png'),
           addPatientView: false,
           editPatientView: false,
           addPatientForm: false,
