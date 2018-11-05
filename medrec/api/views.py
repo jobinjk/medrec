@@ -6,7 +6,8 @@ from medrec.api.resources import (
     Users,
     ProfileResource,
     Patient,
-    Patients
+    Patients,
+    Search
 )
 
 blueprint = Blueprint('api', __name__, url_prefix='/api')
@@ -19,3 +20,5 @@ api.add_resource(ProfileResource, '/users/profile')
 
 api.add_resource(Patient, '/patients/<pid>')
 api.add_resource(Patients, '/patients')
+
+api.add_resource(Search, '/search')
