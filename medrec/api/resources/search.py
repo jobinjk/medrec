@@ -22,14 +22,14 @@ class Search(JWTResource):
 
     def get(self):
 
-        schema = PatientsSchema(many=True)
+        schema = PatientsSchema()
         data = request.args
         current_user = get_current_user()
 
         pid = data.get('id')
 
         try:
-            patient = PatientsModel.objects(id=pid)
+            patient = PatientsModel.objects.get(id=pid)
 
         except (DoesNotExist, ValidationError):
             return make_response(
@@ -37,4 +37,4 @@ class Search(JWTResource):
                 404
             )
 
-        return paginate(patient, schema)
+        return schema.jsonify(patient)
