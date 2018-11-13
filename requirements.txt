@@ -50,3 +50,8 @@ pymongo == 3.4.0
 pypng == 0.0.18
 
 # medrec/api/resources/patients.py: 16
+pyqrcode == 1.2.1
+
+
+# medrec/api/resources/patients.py: 17
+pypng == 0.0.18
