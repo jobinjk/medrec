@@ -50,15 +50,3 @@ pymongo == 3.4.0
 pypng == 0.0.18
 
 # medrec/api/resources/patients.py: 16
-
-# medrec/api/resources/qrcode.py: 2
-pyqrcode == 1.2.1
-
-# medrec/api/resources/qrcode.py: 11
-zbarlight == 2.1
-
-# medrec/api/resources/qrcode.py: 10
-pillow == 5.3.0
-
-# medrec/api/resources/qrcode.py: 10
-omelette == 1.1.6
